@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  socklock-pro1:
+    container_name: socklock-pro1
+    build: .
+    ports:
+      - "6500-6555:6500-6555"  
+    environment:
+      CLIENT_PASS: Yuk65swfAc15rd56jtn1
+      REMOTE_USER: WFKwk538ejfjkwd
+      REMOTE_PASS: df6fc62s5643ge56
+      REMOTE_PORT: 3715
+      START_USER_ID: 6499
+      MAX_USERS: 55
+      MAX_PARALLEL_CHECKS: 10
+      API_URL: https://api.runonflux.io/apps/location/proxypoolusa
+    volumes:
+      - ./configs:/configs
+    restart: unless-stopped
+
+  socklock-pro2:
+    container_name: socklock-pro2
+    build: .
+    ports:
+      - "7100-7155:7100-7155"
+    environment:
+      CLIENT_PASS: Y2uk65swfAc15rd56jtn1
+      MAX_USERS: 52
+      API_URL: https://api.runonflux.io/apps/location/ProxyPoolUSAXXX53196
+      REMOTE_USER: WFKwk538ejfjkwd
+      REMOTE_PASS: df6fc62s5643ge56
+      START_USER_ID: 7099
+      REMOTE_PORT: 3715
+      PROXY_MODE: socks5
+      MAX_PARALLEL_CHECKS: 10
+    volumes:
+      - ./configs2:/configs
+    restart: unless-stopped
